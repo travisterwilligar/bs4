@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+      
+    </head>
+    <body>
+      {% include "partials/navbar.nunjucks" %}
+      <!-- content -->
+
+        {% block content %} {% endblock %}
+        {% include "partials/footer.nunjucks" %}
+      <!-- /content -->
+
+    </body>
+  </html>
