@@ -19,13 +19,13 @@ var onError = function (err) {
 gulp.task("browserSync", function() {
   browserSync({
     server: {
-      baseDir: "dist"
+      baseDir: "dist/pages"
     }
   })
 })
 
 gulp.task('sass', function() {
-    return gulp.src('app/theme/scss/*.scss')
+    return gulp.src('app/theme/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(plumber({
       errorHandler: onError
@@ -33,11 +33,10 @@ gulp.task('sass', function() {
     .pipe(sass({ style: 'expanded' }))
     .pipe(sourcemaps.write())
     .pipe(autoprefixer({browsers: ['last 3 versions']}))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('dist'))
     .pipe(browserSync.reload({
       stream: true
     }));
-
 });
 
 gulp.task('nunjucks', function() {
@@ -45,7 +44,7 @@ gulp.task('nunjucks', function() {
   .pipe(nunjucksRender({
       path: ['app/theme/templates']
     }))
-  .pipe(gulp.dest('dist'))
+  .pipe(gulp.dest('dist/pages'))
   .pipe(browserSync.reload({
     stream: true
   }))
@@ -77,8 +76,8 @@ gulp.task('copy-images', function() {
 });
 
 gulp.task('copy-bootstrap', function() {
-    gulp.src('app/theme/vendor/**/*.*')
-    .pipe(gulp.dest('dist/vendor/'))
+    gulp.src('app/bootstrap/dist/**/*.*')
+    .pipe(gulp.dest('dist/pages/bootstrap/'))
     .pipe(browserSync.reload({
       stream: true
     }))

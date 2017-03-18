@@ -7,16 +7,19 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-    <link rel="stylesheet" href="vendor/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app.css">
+    {% if subTheme %}
+      <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="{{subTheme}}">
+    {% else %}
+      <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/theme.css">
+    {% endif %}
   </head>
   <body>
-    {% include "partials/navbar.nunjucks" %}
+    {% include "partials/navbar.njk" %}
     <!-- content -->
       {% block content %} {% endblock %}
-      {% include "partials/footer.nunjucks" %}
+      {% include "partials/footer.njk" %}
     <!-- /content -->
-
   </body>
 </html>
